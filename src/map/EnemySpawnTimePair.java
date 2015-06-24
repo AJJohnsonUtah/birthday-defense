@@ -1,4 +1,4 @@
-package towers;
+package map;
 
 import enemies.Enemy;
 

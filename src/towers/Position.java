@@ -6,4 +6,12 @@ public class Position {
 		xPos = x;
 		yPos = y;
 	}	
+        
+        public double getXPosition() {
+            return xPos;
+        }
+        
+        public double getYPosition() {
+            return yPos;
+        }
 }

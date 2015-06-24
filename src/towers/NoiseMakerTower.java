@@ -1,42 +1,47 @@
 package towers;
 
 import enemies.Enemy;
+import java.util.ArrayList;
+import java.util.List;
+import towers.attacks.NoiseMakerAttack;
+import towers.attacks.TowerAttack;
 
 public class NoiseMakerTower extends Tower implements AttackingItem {
-	
-	private double attackSpeed;
-	private long timeOfLastAttack;
-	
-	@Override
-	public double getAttackSpeed() {
-		return attackSpeed;
-	}
 
-	@Override
-	public void setAttackSpeed(double speed) {
-		attackSpeed = speed;	
-	}
+    private long timeBetweenAttacks;
+    private long timeOfLastAttack;
 
-	@Override
-	public long timeOfLastAttack() {
-		return timeOfLastAttack;
-	}
+    @Override
+    public long getTimeBetweenAttacks() {
+        return timeBetweenAttacks;
+    }
 
-	@Override
-	public void setTimeOfLastAttack(long time) {
-		timeOfLastAttack = time;		
-	}
+    @Override
+    public void setTimeBetweenAttacks(long time) {
+        timeBetweenAttacks = time;
+    }
 
-	@Override
-	public void attack() {
+    @Override
+    public long timeOfLastAttack() {
+        return timeOfLastAttack;
+    }
+
+    @Override
+    public void setTimeOfLastAttack(long time) {
+        timeOfLastAttack = time;
+    }
+
+    @Override
+    public void attack() {
 		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void attack(Enemy target) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+    }
+
+    @Override
+    public List<TowerAttack> attack(Enemy target) {
+        List<TowerAttack> towerAttacks = new ArrayList<>();
+        towerAttacks.add(new NoiseMakerAttack(this, target));
+        return towerAttacks;
+    }
+
 }

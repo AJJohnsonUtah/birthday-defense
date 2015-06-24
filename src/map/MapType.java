@@ -1,4 +1,4 @@
-package towers;
+package map;
 
 public enum MapType {
 	CAKE,
