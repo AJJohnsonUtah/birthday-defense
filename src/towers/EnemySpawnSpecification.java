@@ -11,6 +11,20 @@ public class EnemySpawnSpecification {
 	
 	private LinkedList<EnemySpawnTimePair> enemiesToSpawn;
 	
+	public EnemySpawnSpecification(MapType mapType) {
+		enemiesToSpawn = new LinkedList<EnemySpawnTimePair>();
+		switch(mapType) {
+		case CAKE:
+			
+			break;
+		case TABLE:
+			
+			break;
+		default:
+			enemiesToSpawn.push(new EnemySpawnTimePair(new, time));
+		}
+	}
+	
 	public Set<Enemy> getEnemiesToSpawnAtGivenTime(long time) {
 		Set<Enemy> enemies = new HashSet<Enemy>();
 		

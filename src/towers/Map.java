@@ -11,9 +11,11 @@ public class Map {
 	private Set<Enemy> enemies;
 	private EnemySpawnSpecification spawnSpecification;
 	
-	public Map() {
+	public Map(MapType mapType) {
 		towers = new HashSet<Tower>();
 		enemies = new HashSet<Enemy>();
+		path = new Path(mapType);
+		spawnSpecification = new EnemySpawnSpecification(mapType);
 	}
 	
 	public boolean addTower(Tower tower) {
