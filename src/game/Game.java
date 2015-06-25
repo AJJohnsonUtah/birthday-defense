@@ -13,31 +13,55 @@ import map.MapType;
  * @author AJ
  */
 public class Game {
+
     private Map map;
     private GameTimer gameTimer;
     private long currency;
     private long timeOfLastUpdate;
-    
-    public Game(MapType mapType){
+    private long lives;
+    private GameOutcome gameStatus;
+
+    public Game(MapType mapType) {
         map = new Map(mapType);
         gameTimer = new GameTimer();
+        currency = 1000;
+        lives = 25;
+        gameStatus = GameOutcome.IN_PROGRESS;
     }
-    
+
     public void startGame() {
-        gameTimer.startTimer();        
+        gameTimer.startTimer();
         timeOfLastUpdate = 0L;
     }
-    
-    public void updateGame() {        
+
+    public void updateGameModel() {
         long timeOfThisUpdate = gameTimer.getTime();
-        map.spawnEnemiesForGivenTime(gameTimer.getTime());
-        map.updateAttackPositions(timeOfThisUpdate - timeOfLastUpdate);
         currency += map.handleAttackEnemyInteractions();
-        map.haveTowersAttackIfAble(gameTimer.getTime());
+        map.haveTowersAttackIfAble(timeOfThisUpdate);
+        map.spawnEnemiesForGivenTime(timeOfThisUpdate);
+        map.updateAttackPositions(timeOfThisUpdate - timeOfLastUpdate);
+        handleLostLives(map.updateEnemyPositions(timeOfThisUpdate - timeOfLastUpdate));
         timeOfLastUpdate = timeOfThisUpdate;
+        updateForEndConditions();
     }
-    
+
     public boolean gameIsInProgress() {
         return gameTimer.getStartTime() > 0 && map.hasEnemiesRemainingInMap();
-    }   
+    }
+
+    public void updateForEndConditions() {
+        if (lives == 0) {
+            gameStatus = GameOutcome.LOSS;
+        } else if (map.hasEnemiesRemainingInMap()) {
+            gameStatus = GameOutcome.WIN;
+        }
+    }
+
+    public void handleLostLives(long livesLost) {
+        if (livesLost > lives) {
+            lives = 0;
+        } else {
+            lives -= livesLost;
+        }
+    }
 }

@@ -22,15 +22,26 @@ public class Path {
         }
     }
 
-    Position[] getPath() {
-        return path;
+    public Position getPathPositionAtIndex(int index) {
+        return path[index];
     }
 
-    Position getStart() {
+    public Position getStart() {
         return path[0];
     }
 
-    Position getEnd() {
+    public Position getEnd() {
         return path[path.length - 1];
+    }
+    
+    public PathPosition getNextPathPosition(PathPosition current) {
+        PathPosition nextPosition = current;
+        nextPosition.setPosition(path[current.getPathIndex() + 1]);
+        nextPosition.incrementPathIndex();
+        return nextPosition;
+    }
+    
+    public boolean hasNextPathPosition(PathPosition current) {
+        return current.getPathIndex() < path.length - 1;
     }
 }
