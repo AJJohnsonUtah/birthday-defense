@@ -16,6 +16,7 @@ public class Game {
     private Map map;
     private GameTimer gameTimer;
     private long currency;
+    private long timeOfLastUpdate;
     
     public Game(MapType mapType){
         map = new Map(mapType);
@@ -24,11 +25,16 @@ public class Game {
     
     public void startGame() {
         gameTimer.startTimer();        
+        timeOfLastUpdate = 0L;
     }
     
-    public void updateGame() {
+    public void updateGame() {        
+        long timeOfThisUpdate = gameTimer.getTime();
         map.spawnEnemiesForGivenTime(gameTimer.getTime());
+        map.updateAttackPositions(timeOfThisUpdate - timeOfLastUpdate);
+        currency += map.handleAttackEnemyInteractions();
         map.haveTowersAttackIfAble(gameTimer.getTime());
+        timeOfLastUpdate = timeOfThisUpdate;
     }
     
     public boolean gameIsInProgress() {

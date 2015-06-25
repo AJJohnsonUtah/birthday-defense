@@ -9,8 +9,10 @@ package towers.attacks;
  *
  * @author AJ
  */
-public abstract class ProjectileAttack extends TowerAttack {
-
-    abstract public double getSpeedOfAttack();
-    abstract public void updatePositionOfProjectile(long timeElapsed);
+public enum TargetingStrategy {
+    TARGET_CLOSEST,
+    LOWEST_HEALTH,
+    HIGHEST_HEALTH,
+    FIRST,
+    LAST
 }

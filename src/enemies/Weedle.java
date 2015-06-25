@@ -8,5 +8,6 @@ public class Weedle extends Enemy{
 		setPosition(spawnPoint);
 		setHealth(50);
 		setMoveSpeed(50);
+                setValue(100);
 	}
 }

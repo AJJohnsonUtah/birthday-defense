@@ -6,11 +6,15 @@ import java.util.List;
 import towers.attacks.NoiseMakerAttack;
 import towers.attacks.TowerAttack;
 
-public class NoiseMakerTower extends Tower implements AttackingItem {
+public class NoiseMakerTower extends AttackingTower {
 
     private long timeBetweenAttacks;
-    private long timeOfLastAttack;
-
+    
+    public NoiseMakerTower(Position centerOfTower) {
+        super(centerOfTower);     
+        timeBetweenAttacks = 500000L;
+    }
+    
     @Override
     public long getTimeBetweenAttacks() {
         return timeBetweenAttacks;
@@ -33,8 +37,13 @@ public class NoiseMakerTower extends Tower implements AttackingItem {
 
     @Override
     public void attack() {
-		// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public boolean areAttacksProjectiles() {
+        return true;
     }
 
     @Override
@@ -42,6 +51,16 @@ public class NoiseMakerTower extends Tower implements AttackingItem {
         List<TowerAttack> towerAttacks = new ArrayList<>();
         towerAttacks.add(new NoiseMakerAttack(this, target));
         return towerAttacks;
+    }
+
+    @Override
+    protected double getDefaultRange() {
+        return 200;
+    }
+
+    @Override
+    protected double getDefaultSize() {
+        return 75;
     }
 
 }

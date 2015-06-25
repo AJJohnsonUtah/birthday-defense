@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package towers.attacks;
+package map;
 
 /**
  *
  * @author AJ
  */
-public abstract class ProjectileAttack extends TowerAttack {
+public interface Tangible {
 
-    abstract public double getSpeedOfAttack();
-    abstract public void updatePositionOfProjectile(long timeElapsed);
+    public TangibleArea getTangibleArea();
 }

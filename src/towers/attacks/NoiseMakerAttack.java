@@ -13,7 +13,7 @@ import towers.Position;
  *
  * @author AJ
  */
-public class NoiseMakerAttack extends TowerAttack implements ProjectileAttack {
+public class NoiseMakerAttack extends ProjectileAttack {
 
     private double speedOfAttack;
     private FixedVelocityVector velocityVector;
@@ -21,6 +21,8 @@ public class NoiseMakerAttack extends TowerAttack implements ProjectileAttack {
     public NoiseMakerAttack(NoiseMakerTower parentTower, Enemy target) {
         speedOfAttack = 150;
         setSizeOfAttack(15);
+        numberOfEnemiesAttackCanHit = 1;
+        attackDamage = 20;
         setPositionOfAttack(parentTower.getCenterPosition());
         velocityVector = new FixedVelocityVector(getPositionOfAttack(), target.getPosition(), speedOfAttack);
     }
