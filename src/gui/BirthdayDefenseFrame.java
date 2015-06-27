@@ -21,7 +21,17 @@ public class BirthdayDefenseFrame extends javax.swing.JFrame {
      */
     public BirthdayDefenseFrame() {
         controller = new BirthdayDefenseController();
+
+        add(new GamePanel());
         initComponents();
+        
+        setResizable(false);
+        pack();
+
+        setTitle("Star");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
     }
 
     /**
@@ -145,11 +155,16 @@ public class BirthdayDefenseFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 BirthdayDefenseFrame mainFrame = new BirthdayDefenseFrame();
-                mainFrame.dispose();
-                mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                mainFrame.setExtendedState(MAXIMIZED_BOTH);
-                mainFrame.setUndecorated(true);
-                mainFrame.pack();
+
+//                mainFrame.dispose();
+//                mainFrame.add(new GamePanel());
+//                mainFrame.setResizable(false);
+//                mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//                mainFrame.setExtendedState(MAXIMIZED_BOTH);
+//                mainFrame.setUndecorated(true);
+//                mainFrame.pack();
+//                mainFrame.setTitle("Star");
+//                mainFrame.setLocationRelativeTo(null);
                 mainFrame.setVisible(true);
             }
         });
