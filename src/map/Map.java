@@ -178,4 +178,8 @@ public class Map {
         }
         return true;
     }
+    
+    public int getNumberOfEnemiesOnMap() {
+        return enemies.size();
+    }
 }

@@ -64,4 +64,16 @@ public class Game {
             lives -= livesLost;
         }
     }
+    
+    public String getCurrency() {
+        return "" + currency;
+    }
+    
+    public String getNumberOfEnemies() {
+        return "" + map.getNumberOfEnemiesOnMap();
+    }
+    
+    public String getLives() {
+        return "" + lives;
+    }
 }
