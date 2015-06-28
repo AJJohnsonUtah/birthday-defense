@@ -5,6 +5,8 @@
  */
 package game;
 
+import enemies.Enemy;
+import java.util.List;
 import map.Map;
 import map.MapType;
 
@@ -71,6 +73,10 @@ public class Game {
     
     public String getNumberOfEnemies() {
         return "" + map.getNumberOfEnemiesOnMap();
+    }
+    
+    public List<Enemy> getEnemiesInGame() {
+        
     }
     
     public String getLives() {

@@ -5,13 +5,13 @@
  */
 package gui;
 
-import java.awt.Color;
+import game.Game;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.util.List;
 import javax.swing.ImageIcon;
+import map.MapType;
 
 /**
  *
@@ -52,33 +52,12 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
-    private final int B_WIDTH = 350;
-    private final int B_HEIGHT = 350;
-    private final int INITIAL_X = -40;
-    private final int INITIAL_Y = -40;
     private final int DELAY = 25;
-
+        
+    private Game activeGame;
     private Image star;
     private Thread animator;
     private int x, y;
-
-    private void loadImage() {
-
-        ImageIcon ii = new ImageIcon("C:\\Users\\AJ\\Pictures\\Soil.png");
-        star = ii.getImage();
-    }
-
-    private void initBoard() {
-
-        setBackground(Color.BLACK);
-        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-        setDoubleBuffered(true);
-
-        loadImage();
-
-        x = INITIAL_X;
-        y = INITIAL_Y;
-    }
 
     @Override
     public void addNotify() {
@@ -91,7 +70,9 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Image background = (new ImageIcon("src/images/BirthdayDefense.png")).getImage();
 
+        g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
         drawStar(g);
     }
 
@@ -103,42 +84,17 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
     private void cycle() {
 
-        x += 1;
-        y += 1;
-
-        if (y > B_HEIGHT) {
-
-            y = INITIAL_Y;
-            x = INITIAL_X;
-        }
+            activeGame.updateGameModel();
     }
 
     @Override
     public void run() {
 
-        long beforeTime, timeDiff, sleep;
-
-        beforeTime = System.currentTimeMillis();
 
         while (true) {
 
             cycle();
             repaint();
-
-            timeDiff = System.currentTimeMillis() - beforeTime;
-            sleep = DELAY - timeDiff;
-
-            if (sleep < 0) {
-                sleep = 2;
-            }
-
-            try {
-                Thread.sleep(sleep);
-            } catch (InterruptedException e) {
-                System.out.println("Interrupted: " + e.getMessage());
-            }
-
-            beforeTime = System.currentTimeMillis();
         }
     }
 }

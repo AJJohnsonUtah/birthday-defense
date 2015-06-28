@@ -6,6 +6,8 @@
 package gui;
 
 import game.Game;
+import java.awt.Image;
+import java.util.List;
 import map.MapType;
 
 /**
@@ -25,5 +27,9 @@ public class BirthdayDefenseController {
     
     public void startNewGame() {
         activeGame = new Game(MapType.CAKE);
+    }
+    
+    public List<Image> getMapImages() {
+        for
     }
 }
